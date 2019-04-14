@@ -1,18 +1,13 @@
 ---
 layout: page
-title: About
+title: O mně
 permalink: /about/
+
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+Jmenuji se Vojtěch Nádvorník. Jsem původem z Děčína a v současné době jsem předsedou místní organizace TOP 09 Děčín. Spoluvlastním a pracuji ve firmě CodeEffect s.r.o., která se zabývá vývojem software pro firmy ve Velké Británii a v Německu. Vystudoval jsem Fakultu elektrotechnickou ČVUT v Praze.
 
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
-
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
+Tento blog jsem založil jako platformu pro určitou objasnění problémů, ke kterým chybí informace ve veřejném prostoru.
 
 
-[jekyll-organization]: https://github.com/jekyll
+[for devs](/dev)
