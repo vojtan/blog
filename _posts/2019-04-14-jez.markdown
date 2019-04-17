@@ -8,7 +8,7 @@ categories: jez
 Tuto analýzu jsem vypracoval z veřejně dostupných zdrojů. Pokud v tomto textu objevíte nějakou chybu, dejte mi, prosím, vědět a já se ji pokusím opravit. Mým cílem je vytvořit objektivní pohled založený na datech, který pomůže při rozhodování o smysluplnosti stavby jezu.
 
 ### Srovnání splavnosti Labe před a po stavbě jezu
-Aktuálně je veřejnost informována o tom, že po stavbě jezu by bylo Labe splavné celoročně. Podle mého názoru tato informace není pravdivá. Statistiky splavnosti za posledních 6 let říkají, že Labe je za současného stavu splavné 165 dní (46%) v roce a pokud by byl jez postaven, bude splavné 270 dní (74%) v roce. To vše při ponoru 1,4m, který je na hranici rentability. Když  se dále podíváme na roky 2015 a 2018, tak by bylo Labe i po výstavbě jezu splavné pouze půl roku. Když zhodnotíme splavnost Labe při ponoru 2,2m, tak by se splavnost zvedla na 25% oproti současným 12%. 
+Aktuálně je veřejnost informována o tom, že po stavbě jezu by bylo Labe splavné celoročně. Podle mého názoru tato informace není pravdivá. Statistiky splavnosti za posledních 6 let říkají, že Labe je za současného stavu splavné 177 dní (47%) v roce a pokud by byl jez postaven, bude splavné 285 dní (78%) v roce. To vše při ponoru 1,4m, který je na hranici rentability. Když  se dále podíváme na roky 2015 a 2018, tak by bylo Labe i po výstavbě jezu splavné pouze půl roku. Když zhodnotíme splavnost Labe při ponoru 2,2m, tak by se splavnost zvedla na 29% oproti současným 14%. To je velmi daleko od proklamované splavnosti 50% z projektové dokumentace.
 
 Detaily
 
@@ -16,53 +16,29 @@ Detaily
 
 |Ponor 1,4m|Aktuálně|S jezem|
 |---------|----|----|
-|2012|135|347|
-|2013|299|361|
-|2014|164|321|
-|2015|139|193|
-|2016|131|281|
-|2017|142|245|
-|2018|110|168|
-|2013-2018|**164**|**270**|
+|2012|142|357|
+|2013|303|364|
+|2014|171|338|
+|2015|155|213|
+|2016|170|314|
+|2017|154|268|
+|2018|117|172|
+|2013-2018|**177**|**285**|
 
 |Ponor 2,2m|Aktuálně|S jezem|
 |---------|----|----|
-|2012|16|44|
-|2013|150|223|
-|2014|12|62|
-|2015|37|73|
-|2016|29|66|
-|2017|29|91|
-|2018|33|51|
-|2013-2018|**44**|**91**|
-
-#### Sjízdnost Labe v procentech 
-
-|Ponor 1,4m|Aktuálně|S jezem|
-|---------|----|----|
-|2012|37%|95%|
-|2013|82%|99%|
-|2014|45%|88%|
-|2015|38%|53%|
-|2016|36%|77%|
-|2017|39%|67%|
-|2018|30%|46%|
-|2013-2018|**45%**|**74%**|
-
-|Ponor 2,2m|Aktuálně|S jezem|
-|---------|----|----|
-|2012|5%|12%|
-|2013|41%|61%|
-|2014|3%|17%|
-|2015|10%|20%|
-|2016|8%|18%|
-|2017|8%|25%|
-|2018|9%|14%|
-|2013-2018|**12%**|**25%**|
+|2012|20|48|
+|2013|159|233|
+|2014|14|67|
+|2015|38|87|
+|2016|34|83|
+|2017|38|112|
+|2018|37|67|
+|2013-2018|**52**|**105**|
 
 
 #### Způsob výpočtu
-V technické dokumentaci k jezu se dá dohledat minimální průtoky v Ústi nad Labem pro ponory 1,4m a 2,2m. Bez jezu je to pro ponor 1,4m 186m<sup>3</sup>/s a pro 2,2m 358m<sup>3</sup>/s. Po výstavbě jezu je to 117m<sup>3</sup>/s pro ponor 1,4m a 248m<sup>3</sup>/s pro pono 2,2m. Z průtoků naměřených společností Povodí Labe se dá jednoduše spočítat, kdy je Labe splavné pro jednotlivé ponory.
+V technické dokumentaci k jezu se dá dohledat minimální průtoky v Děčíně pro ponory 1,4m a 2,2m. Bez jezu je to pro ponor 1,4m 186m<sup>3</sup>/s a pro 2,2m 358m<sup>3</sup>/s. Po výstavbě jezu je to 117m<sup>3</sup>/s pro ponor 1,4m a 248m<sup>3</sup>/s pro pono 2,2m. Z průtoků naměřených společností Povodí Labe se dá jednoduše spočítat, kdy je Labe splavné pro jednotlivé ponory.
 
 Zdroje<br/>
 [Přednáška pan Michael Trnka](https://www.youtube.com/watch?v=bj6ux2CWcrc&feature=youtu.be&t=1652)<br/>
