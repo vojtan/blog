@@ -23,7 +23,7 @@ Detaily
 |2016|170|314|
 |2017|154|268|
 |2018|117|172|
-|2013-2018|**177**|**285**|
+|2013-2018|**177** (46%)|**285** (78%)|
 
 |Ponor 2,2m|Aktuálně|S jezem|
 |---------|----|----|
@@ -36,14 +36,15 @@ Detaily
 |2018|37|67|
 |2013-2018|**52**|**105**|
 
+Zdroje<br/>
+[Časové řady průtoky - PLA](http://hydra2.dusanrysavy.cz/Graf#107#109#04/04/2019#31/12/2012#Q)<br/>
+[Zpracovaná data](https://docs.google.com/spreadsheets/d/12O98-CJAowOy6nGx6AoP9-pfhQMaEL_1cN5yFG3DGcg/edit?usp=sharing)<br/>
+[Přednáška pan Michael Trnka - referenční průtoky](https://www.youtube.com/watch?v=bj6ux2CWcrc&feature=youtu.be&t=1652)<br/>
+
 
 #### Způsob výpočtu
 V technické dokumentaci k jezu se dá dohledat minimální průtoky v Děčíně pro ponory 1,4m a 2,2m. Bez jezu je to pro ponor 1,4m 186m<sup>3</sup>/s a pro 2,2m 358m<sup>3</sup>/s. Po výstavbě jezu je to 117m<sup>3</sup>/s pro ponor 1,4m a 248m<sup>3</sup>/s pro pono 2,2m. Z průtoků naměřených společností Povodí Labe se dá jednoduše spočítat, kdy je Labe splavné pro jednotlivé ponory.
 
-Zdroje<br/>
-[Přednáška pan Michael Trnka](https://www.youtube.com/watch?v=bj6ux2CWcrc&feature=youtu.be&t=1652)<br/>
-[Časové řady průtoky](http://hydra2.dusanrysavy.cz/Graf#107#109#04/04/2019#31/12/2012#Q)<br/>
-[Zpracovaná data](https://docs.google.com/spreadsheets/d/12O98-CJAowOy6nGx6AoP9-pfhQMaEL_1cN5yFG3DGcg/edit?usp=sharing)<br/>
 
 ### Přepravované množství nákladu po Labi
 Dlouhodobě množství přepravovaného materiálu po Labi klesá. Například v roce 2017 bylo přes Děčín přepraveno po Labi 75 tisíc tun materiálu. To znamená přibližně 45 vlaků za rok. To znamená přibližně jeden nákladní vlak za týden. Podíl lodní dopravy na importu a exportu v roce 2017 byl 0,1%.
@@ -52,14 +53,16 @@ Detaily
 
 Vývoj importu a exportu v lodní dopravě
 ![Import export](/assets/images/importexport.png)
+Zdroj<br/> 
+[Časové řady objem exportu - ČSÚ - tabulka 3](https://www.czso.cz/csu/czso/nakladni_doprava_casove_rady)<br/>
+
 Podíl lodní dopravy na exportu a importu v roce 2017
 ![Podíly podle druhu dopravy](/assets/images/podilpreprav.png)
+Zdroj<br/> 
+[Časové řady objem exportu - ČSÚ - tabulky 1,2,3](https://www.czso.cz/csu/czso/nakladni_doprava_casove_rady)<br/>
 
 Poznámka
 Tyto statistiky zahrnují přepravu pouze lodí pod českou vlajkou, statistiky plujících pod cizí vlajkou na českém území se mi nepodařilo dohledat.
-
-Zdroje<br/> 
-[Časové řady objem exportu](https://www.czso.cz/csu/czso/nakladni_doprava_casove_rady)<br/>
 
 ### Nástup moderních technologií
 V následujících letech můžeme očekávat nástup samořiditelných ekologický nákladních automobilů, které zlevní silniční přepravu. To vytvoří tlak na konkurenci, mezi které patří i lodní doprava.
