@@ -1,0 +1,11 @@
+<meta charset="UTF-8" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/cs.js"></script>
+<script src="/assets/js/openingHoursService.js"></script>
+<div id="sberny_dvur"></div>
+<script type="text/javascript">
+    var service = new OpeningHoursService();
+    document.getElementById("sberny_dvur").innerHTML = service.renderHtml();
+</script>
