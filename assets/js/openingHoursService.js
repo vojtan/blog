@@ -210,7 +210,7 @@ var OpeningHoursService = /** @class */ (function () {
         var _this = this;
         if (!openingTimes)
             this.openingTimes = this.defaultOpeningTimes;
-        var date = new Date(2020, 2, 22);
+        var date = new Date();
         var openFacilities = this.getOpenFacilities(date);
         if (openFacilities == null)
             return "";
@@ -241,7 +241,7 @@ var OpeningHoursService = /** @class */ (function () {
                     url: openFacility.openingTime.url,
                     map: openFacility.openingTime.map
                 };
-                tmpl = "<div class='card' style=\"width: 18rem;\">\n                            <div class='card-body'>\n                                <h5 class='card-title'>\n                                    {{name}}\n                                </h5>\n                                <div  class='card-text'>\n                                    Otev\u0159en\u00FD je {{name}}{{{closingTag}}}. Otv\u00EDrac\u00ED doba od {{openingHours}}.\n                                </div>\n                                <div class=\"row\">\n                                    <div class=\"col-sm-6\">\n                                        <a target='_blank'  class=\"card-link\" href=\"{{url}}\">V\u00EDce informac\u00ED</a>\n                                    </div>\n                                    <div class=\"col-sm-6\">\n                                        <a target='_blank' class=\"card-link\" href=\"{{map}}\">Zobrazit mapu</a>\n                                    </div>                               \n                                </div>   \n                             </div>\n                        </div>\n                        ";
+                tmpl = "<div class='card' style=\"width: 18rem;\">\n                            <div class='card-body'>\n                                <h5 class='card-title'>\n                                    {{name}}\n                                </h5>\n                                <div  class='card-text'>\n                                    Otev\u0159en\u00FD je {{name}}{{{closingTag}}}. Otev\u00EDrac\u00ED doba od {{openingHours}}.\n                                </div>\n                                <div class=\"row\">\n                                    <div class=\"col-sm-6\">\n                                        <a target='_blank'  class=\"card-link\" href=\"{{url}}\">V\u00EDce informac\u00ED</a>\n                                    </div>\n                                    <div class=\"col-sm-6\">\n                                        <a target='_blank' class=\"card-link\" href=\"{{map}}\">Zobrazit mapu</a>\n                                    </div>                               \n                                </div>   \n                             </div>\n                        </div>\n                        ";
                 return Mustache.to_html(tmpl, viewModel);
             }).join();
         }
