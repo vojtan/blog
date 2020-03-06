@@ -3,6 +3,7 @@ layout: post
 title:  "Kozí dráha – stav říjen 2018"
 date:   2018-10-20 13:47:08 +0200
 categories: kozi draha 
+background: '/img/header.jpg'
 ---
 ### Úvod
 Zde se můžete podívat na fotografie aktuálního stavu trati 132 Kozí dráha. Chci tímto přispět k informovanosti veřejnosti a podpořit diskuzi o využití této trati.

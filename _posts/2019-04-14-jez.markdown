@@ -3,6 +3,7 @@ layout: post
 title:  "Jez na Labi"
 date:   2019-04-05 13:47:08 +0200
 categories: jez 
+background: '/img/header.jpg'
 ---
 ### Úvod
 Tuto analýzu jsem vypracoval z veřejně dostupných zdrojů. Pokud v tomto textu objevíte nějakou chybu, dejte mi, prosím, vědět a já se ji pokusím opravit. Mým cílem je vytvořit objektivní pohled založený na datech, který pomůže při rozhodování o smysluplnosti stavby jezu.
