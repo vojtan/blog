@@ -79,6 +79,7 @@ var DayOccurrence;
     DayOccurrence[DayOccurrence["Always"] = 0] = "Always";
     DayOccurrence[DayOccurrence["WorkDays"] = 1] = "WorkDays";
     DayOccurrence[DayOccurrence["Weekend"] = 2] = "Weekend";
+    DayOccurrence[DayOccurrence["Saturday"] = 3] = "Saturday";
 })(DayOccurrence || (DayOccurrence = {}));
 var OpeningTime = /** @class */ (function () {
     function OpeningTime() {
@@ -104,7 +105,6 @@ var OpeningTimeDateRange = /** @class */ (function (_super) {
         return _this;
     }
     OpeningTimeDateRange.prototype.getNextOpenTime = function (date) {
-        debugger;
         return new Date(this.startDate.getFullYear(), this.startDate.getMonth(), this.startDate.getDate(), Math.floor(this.from), 60 * (this.from - Math.floor(this.from)), 0);
     };
     OpeningTimeDateRange.prototype.isOpen = function (date) {
@@ -134,6 +134,8 @@ var OpeningTimeWeekly = /** @class */ (function (_super) {
                 return dayNumber === 0 || dayNumber === 6; // 0 = Sunday // 6 = Saturday
             case DayOccurrence.WorkDays:
                 return !(dayNumber === 0 || dayNumber === 6);
+            case DayOccurrence.Saturday:
+                return dayNumber === 6;
         }
         return true;
     };
@@ -181,8 +183,10 @@ var OpeningHoursService = /** @class */ (function () {
         this.defaultOpeningTimes = [
             new OpeningTimeWeekly({ name: "Sběrný dvůr Březová", from: 8, to: 13.5, map: "https://www.google.com/maps/search/?api=1&query=50.771072,14.221335", url: "https://www.mariuspedersen.cz/cs/sluzby-ve-vasem-meste/technicke-sluzby-decin-a-s/provozovny-k-dispozici/93-sberny-dvur-brezova.shtml", weekOccurrence: WeekOccurrence.Even, dayOccurence: DayOccurrence.WorkDays }),
             new OpeningTimeWeekly({ name: "Sběrný dvůr Březová", from: 12, to: 18, map: "https://www.google.com/maps/search/?api=1&query=50.771072,14.221335", url: "https://www.mariuspedersen.cz/cs/sluzby-ve-vasem-meste/technicke-sluzby-decin-a-s/provozovny-k-dispozici/93-sberny-dvur-brezova.shtml", weekOccurrence: WeekOccurrence.Odd, dayOccurence: DayOccurrence.WorkDays }),
+            new OpeningTimeWeekly({ name: "Sběrný dvůr Březová", from: 8, to: 14, map: "https://www.google.com/maps/search/?api=1&query=50.771072,14.221335", url: "https://www.mariuspedersen.cz/cs/sluzby-ve-vasem-meste/technicke-sluzby-decin-a-s/provozovny-k-dispozici/93-sberny-dvur-brezova.shtml", weekOccurrence: WeekOccurrence.Odd, dayOccurence: DayOccurrence.Saturday }),
             new OpeningTimeWeekly({ name: "Sběrný dvůr Pískovna", from: 8, to: 13.5, map: "https://www.google.com/maps/search/?api=1&query=50.776045,14.188368", url: "https://www.mariuspedersen.cz/cs/sluzby-ve-vasem-meste/technicke-sluzby-decin-a-s/provozovny-k-dispozici/94-sberny-dvur-piskovna.shtml", weekOccurrence: WeekOccurrence.Odd, dayOccurence: DayOccurrence.WorkDays }),
             new OpeningTimeWeekly({ name: "Sběrný dvůr Pískovna", from: 12, to: 18, map: "https://www.google.com/maps/search/?api=1&query=50.776045,14.188368", url: "https://www.mariuspedersen.cz/cs/sluzby-ve-vasem-meste/technicke-sluzby-decin-a-s/provozovny-k-dispozici/94-sberny-dvur-piskovna.shtml", weekOccurrence: WeekOccurrence.Even, dayOccurence: DayOccurrence.WorkDays }),
+            new OpeningTimeWeekly({ name: "Sběrný dvůr Pískovna", from: 8, to: 14, map: "https://www.google.com/maps/search/?api=1&query=50.776045,14.188368", url: "https://www.mariuspedersen.cz/cs/sluzby-ve-vasem-meste/technicke-sluzby-decin-a-s/provozovny-k-dispozici/94-sberny-dvur-piskovna.shtml", weekOccurrence: WeekOccurrence.Even, dayOccurence: DayOccurrence.Saturday }),
         ];
     }
     OpeningHoursService.prototype.getFacilityThatOpensSoon = function (date) {
@@ -216,7 +220,6 @@ var OpeningHoursService = /** @class */ (function () {
             return "";
         if (openFacilities.length == 0) {
             var facilityThatOpensSoon = this.getFacilityThatOpensSoon(date);
-            debugger;
             var viewModel = {};
             viewModel.name = facilityThatOpensSoon.openingTime.name;
             viewModel.nextOpenTimeFormatted = moment(facilityThatOpensSoon.nextOpenTime).format("LT");
@@ -225,7 +228,6 @@ var OpeningHoursService = /** @class */ (function () {
             viewModel.url = facilityThatOpensSoon.openingTime.url;
             viewModel.map = facilityThatOpensSoon.openingTime.map;
             var tmpl = "<div class='card' style=\"width: 18rem;\">\n            <div class='card-body'>\n                <h5 class='card-title'>\n                    V\u0161e je zav\u0159eno.\n                </h5>\n                <div  class='card-text'>\n                    {{name}} otev\u0159e <span>{{nextOpenDateFormatted}} v {{nextOpenTimeFormatted}}</span>\n                </div>\n                <div class=\"row\">\n                    <div class=\"col-sm-6\">\n                        <a target='_blank'  class=\"card-link\" href=\"{{url}}\">V\u00EDce informac\u00ED</a>\n                    </div>\n                    <div class=\"col-sm-6\">\n                        <a target='_blank' class=\"card-link\" href=\"{{map}}\">Zobrazit mapu</a>\n                    </div>                               \n                </div>   \n             </div>\n        </div>\n        ";
-            //  var tmpl = '<div title="{{tooltip}}">Vše je zavřeno. {{openingTime.name}} otevře <span>{{nextOpenDateFormatted}} v {{nextOpenTimeFormatted}}</span></div>';
             return Mustache.to_html(tmpl, viewModel);
         }
         else {
@@ -241,7 +243,7 @@ var OpeningHoursService = /** @class */ (function () {
                     url: openFacility.openingTime.url,
                     map: openFacility.openingTime.map
                 };
-                tmpl = "<div class='card' style=\"width: 18rem;\">\n                            <div class='card-body'>\n                                <h5 class='card-title'>\n                                    {{name}}\n                                </h5>\n                                <div  class='card-text'>\n                                    Otev\u0159en\u00FD je {{name}}{{{closingTag}}}. Otev\u00EDrac\u00ED doba od {{openingHours}}.\n                                </div>\n                                <div class=\"row\">\n                                    <div class=\"col-sm-6\">\n                                        <a target='_blank'  class=\"card-link\" href=\"{{url}}\">V\u00EDce informac\u00ED</a>\n                                    </div>\n                                    <div class=\"col-sm-6\">\n                                        <a target='_blank' class=\"card-link\" href=\"{{map}}\">Zobrazit mapu</a>\n                                    </div>                               \n                                </div>   \n                             </div>\n                        </div>\n                        ";
+                tmpl = "<div class='card' style=\"width: 18rem;\">\n                            <div class='card-body'>\n                                <h5 class='card-title'>\n                                    {{name}}\n                                </h5>\n                                <div  class='card-text'>\n                                    Otev\u0159en\u00FD je {{name}}{{{closingTag}}}. Otev\u00EDrac\u00ED doba {{openingHours}}.\n                                </div>\n                                <div class=\"row\">\n                                    <div class=\"col-sm-6\">\n                                        <a target='_blank'  class=\"card-link\" href=\"{{url}}\">V\u00EDce informac\u00ED</a>\n                                    </div>\n                                    <div class=\"col-sm-6\">\n                                        <a target='_blank' class=\"card-link\" href=\"{{map}}\">Zobrazit mapu</a>\n                                    </div>                               \n                                </div>   \n                             </div>\n                        </div>\n                        ";
                 return Mustache.to_html(tmpl, viewModel);
             }).join();
         }
