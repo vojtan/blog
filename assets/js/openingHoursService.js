@@ -253,8 +253,7 @@ var OpeningHoursService = /** @class */ (function () {
     OpeningHoursService.prototype.renderHtml = function (openingTimes) {
         if (!openingTimes)
             this.openingTimes = this.defaultOpeningTimes;
-        var date = new Date(2020, 5, 22, 11, 0, 0);
-        //var date = new Date();
+        var date = new Date();
         var result = this.getHtmlForOpenFacilities(date);
         result += this.getHtmlForFacilityThatOpenSoon(date);
         return result;
