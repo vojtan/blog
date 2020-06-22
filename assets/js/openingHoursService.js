@@ -31,6 +31,11 @@ var DateUtils = /** @class */ (function () {
         // Return array of year and week number
         return weekNo;
     };
+    DateUtils.addHoursToDate = function (date, h) {
+        var copiedDate = new Date(date.getTime());
+        copiedDate.setTime(copiedDate.getTime() + (h * 60 * 60 * 1000));
+        return copiedDate;
+    };
     DateUtils.BankHolidays = [
         new Date(2019, 0, 1),
         new Date(2019, 3, 10),
@@ -167,11 +172,13 @@ var OpeningTimeWeekly = /** @class */ (function (_super) {
         return (this.from <= time && this.to >= time);
     };
     OpeningTimeWeekly.prototype.getNextOpenTime = function (date) {
-        for (var i = 1; i < 50; i++) {
+        for (var i = 0; i < 50; i++) {
             var testedDate = new Date(date);
             testedDate.setDate(testedDate.getDate() + i);
             if (this.isOpenOnThisDay(testedDate)) {
-                return new Date(testedDate.getFullYear(), testedDate.getMonth(), testedDate.getDate(), Math.floor(this.from), 60 * (this.from - Math.floor(this.from)), 0);
+                var nextOpenTime = new Date(testedDate.getFullYear(), testedDate.getMonth(), testedDate.getDate(), Math.floor(this.from), 60 * (this.from - Math.floor(this.from)), 0);
+                if (nextOpenTime > date)
+                    return nextOpenTime;
             }
         }
         throw "Cannot calculate next opening time";
@@ -210,43 +217,47 @@ var OpeningHoursService = /** @class */ (function () {
     OpeningHoursService.prototype.getTooltip = function (facility) {
         return this.getFormattedTime(facility.from) + "-" + this.getFormattedTime(facility.to);
     };
-    OpeningHoursService.prototype.renderHtml = function (openingTimes) {
+    OpeningHoursService.prototype.getHtmlForFacilityThatOpenSoon = function (date) {
+        var facilityThatOpensSoon = this.getFacilityThatOpensSoon(date);
+        if (DateUtils.addHoursToDate(facilityThatOpensSoon.nextOpenTime, -3) > date)
+            return "";
+        var viewModel = {};
+        viewModel.name = facilityThatOpensSoon.openingTime.name;
+        viewModel.nextOpenTimeFormatted = moment(facilityThatOpensSoon.nextOpenTime).format("LT");
+        viewModel.nextOpenDateFormatted = moment(facilityThatOpensSoon.nextOpenTime).format("DD.MM.");
+        viewModel.tooltip = this.getTooltip(facilityThatOpensSoon.openingTime);
+        viewModel.url = facilityThatOpensSoon.openingTime.url;
+        viewModel.map = facilityThatOpensSoon.openingTime.map;
+        var tmpl = "<div class='card opening-soon'>\n    <div class='card-body'>\n        <h5 class='card-title'>\n            {{name}} uzav\u0159en\n        </h5>\n        <div  class='card-text'>                    \n            otev\u0159e {{nextOpenDateFormatted}} v {{nextOpenTimeFormatted}}</span>\n        </div>\n        <div class=\"row card-info\">\n            <div class=\"col-sm-6\">\n                <a target='_blank'  class=\"card-link\" href=\"{{url}}\">V\u00EDce informac\u00ED</a>\n            </div>\n            <div class=\"col-sm-6\">\n                <a target='_blank' class=\"card-link\" href=\"{{map}}\">Zobrazit mapu</a>\n            </div>                               \n        </div>   \n     </div>\n</div>\n";
+        return Mustache.to_html(tmpl, viewModel);
+    };
+    OpeningHoursService.prototype.getHtmlForOpenFacilities = function (date) {
         var _this = this;
+        var openFacilities = this.getOpenFacilities(date);
+        return openFacilities.map(function (openFacility) {
+            var closingTag = "";
+            if (openFacility.closesSoon) {
+                closingTag = ", ale brzy zavírá";
+            }
+            var viewModel = {
+                name: openFacility.openingTime.name,
+                closingTag: closingTag,
+                openingHours: _this.getTooltip(openFacility.openingTime),
+                url: openFacility.openingTime.url,
+                map: openFacility.openingTime.map
+            };
+            var tmpl = "<div class='card open'>\n                            <div class='card-body'>\n                                <h5 class='card-title'>\n                                    {{name}} otev\u0159en{{closingTag}}\n                                </h5>\n                                <div  class='card-text'> Otev\u00EDrac\u00ED doba {{openingHours}}\n                                </div>\n                                <div class=\"row card-info\">\n                                    <div class=\"col-sm-6\">\n                                        <a target='_blank'  class=\"card-link\" href=\"{{url}}\">V\u00EDce informac\u00ED</a>\n                                    </div>\n                                    <div class=\"col-sm-6\">\n                                        <a target='_blank' class=\"card-link\" href=\"{{map}}\">Zobrazit mapu</a>\n                                    </div>                               \n                                </div>   \n                             </div>\n                        </div>\n                        ";
+            return Mustache.to_html(tmpl, viewModel);
+        }).join();
+    };
+    OpeningHoursService.prototype.renderHtml = function (openingTimes) {
         if (!openingTimes)
             this.openingTimes = this.defaultOpeningTimes;
-        var date = new Date();
-        var openFacilities = this.getOpenFacilities(date);
-        if (openFacilities == null)
-            return "";
-        if (openFacilities.length == 0) {
-            var facilityThatOpensSoon = this.getFacilityThatOpensSoon(date);
-            var viewModel = {};
-            viewModel.name = facilityThatOpensSoon.openingTime.name;
-            viewModel.nextOpenTimeFormatted = moment(facilityThatOpensSoon.nextOpenTime).format("LT");
-            viewModel.nextOpenDateFormatted = moment(facilityThatOpensSoon.nextOpenTime).format("DD.MM.");
-            viewModel.tooltip = this.getTooltip(facilityThatOpensSoon.openingTime);
-            viewModel.url = facilityThatOpensSoon.openingTime.url;
-            viewModel.map = facilityThatOpensSoon.openingTime.map;
-            var tmpl = "<div class='card' style=\"width: 18rem;\">\n            <div class='card-body'>\n                <h5 class='card-title'>\n                    V\u0161e je zav\u0159eno.\n                </h5>\n                <div  class='card-text'>\n                    {{name}} otev\u0159e <span>{{nextOpenDateFormatted}} v {{nextOpenTimeFormatted}}</span>\n                </div>\n                <div class=\"row\">\n                    <div class=\"col-sm-6\">\n                        <a target='_blank'  class=\"card-link\" href=\"{{url}}\">V\u00EDce informac\u00ED</a>\n                    </div>\n                    <div class=\"col-sm-6\">\n                        <a target='_blank' class=\"card-link\" href=\"{{map}}\">Zobrazit mapu</a>\n                    </div>                               \n                </div>   \n             </div>\n        </div>\n        ";
-            return Mustache.to_html(tmpl, viewModel);
-        }
-        else {
-            return openFacilities.map(function (openFacility) {
-                var closingTag = "";
-                if (openFacility.closesSoon) {
-                    closingTag = "<span>, ale brzy zavírá</span>";
-                }
-                var viewModel = {
-                    name: openFacility.openingTime.name,
-                    closingTag: closingTag,
-                    openingHours: _this.getTooltip(openFacility.openingTime),
-                    url: openFacility.openingTime.url,
-                    map: openFacility.openingTime.map
-                };
-                tmpl = "<div class='card' style=\"width: 18rem;\">\n                            <div class='card-body'>\n                                <h5 class='card-title'>\n                                    {{name}}\n                                </h5>\n                                <div  class='card-text'>\n                                    Otev\u0159en\u00FD je {{name}}{{{closingTag}}}. Otev\u00EDrac\u00ED doba {{openingHours}}.\n                                </div>\n                                <div class=\"row\">\n                                    <div class=\"col-sm-6\">\n                                        <a target='_blank'  class=\"card-link\" href=\"{{url}}\">V\u00EDce informac\u00ED</a>\n                                    </div>\n                                    <div class=\"col-sm-6\">\n                                        <a target='_blank' class=\"card-link\" href=\"{{map}}\">Zobrazit mapu</a>\n                                    </div>                               \n                                </div>   \n                             </div>\n                        </div>\n                        ";
-                return Mustache.to_html(tmpl, viewModel);
-            }).join();
-        }
+        var date = new Date(2020, 5, 22, 11, 0, 0);
+        //var date = new Date();
+        var result = this.getHtmlForOpenFacilities(date);
+        result += this.getHtmlForFacilityThatOpenSoon(date);
+        return result;
     };
     return OpeningHoursService;
 }());
