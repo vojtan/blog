@@ -6,4 +6,18 @@ categories: sberny dvur
 background: '/img/header.jpg'
 ---
 
+<style type="text/css">
+.card {
+    margin: 10px;
+    text-align: center;
+}
+.opening-soon{ 
+    background-color: #ffb347;
+}
+.open{ 
+    background-color: #77dd77;
+}     
+.card-info {
+    text-align: center;
+} </style>
 {%- include dvur.html -%}
