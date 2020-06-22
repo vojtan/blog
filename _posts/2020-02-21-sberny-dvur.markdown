@@ -11,10 +11,10 @@ background: '/img/header.jpg'
     margin: 10px;
     text-align: center;
 }
-.opening-soon{ 
+.card .opening-soon{ 
     background-color: #ffb347;
 }
-.open{ 
+.card .open{ 
     background-color: #77dd77;
 }     
 .card-info {
