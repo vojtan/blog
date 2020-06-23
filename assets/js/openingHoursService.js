@@ -217,10 +217,7 @@ var OpeningHoursService = /** @class */ (function () {
     OpeningHoursService.prototype.getTooltip = function (facility) {
         return this.getFormattedTime(facility.from) + "-" + this.getFormattedTime(facility.to);
     };
-    OpeningHoursService.prototype.getHtmlForFacilityThatOpenSoon = function (date) {
-        var facilityThatOpensSoon = this.getFacilityThatOpensSoon(date);
-        if (DateUtils.addHoursToDate(facilityThatOpensSoon.nextOpenTime, -3) > date)
-            return "";
+    OpeningHoursService.prototype.getHtmlForFacilityThatOpenSoon = function (facilityThatOpensSoon) {
         var viewModel = {};
         viewModel.name = facilityThatOpensSoon.openingTime.name;
         viewModel.nextOpenTimeFormatted = moment(facilityThatOpensSoon.nextOpenTime).format("LT");
@@ -231,9 +228,8 @@ var OpeningHoursService = /** @class */ (function () {
         var tmpl = "<div class='card opening-soon'>\n    <div class='card-body'>\n        <h5 class='card-title'>\n            {{name}} uzav\u0159en\n        </h5>\n        <div  class='card-text'>                    \n            otev\u0159e {{nextOpenDateFormatted}} v {{nextOpenTimeFormatted}}</span>\n        </div>\n        <div class=\"row card-info\">\n            <div class=\"col-sm-6\">\n                <a target='_blank'  class=\"card-link\" href=\"{{url}}\">V\u00EDce informac\u00ED</a>\n            </div>\n            <div class=\"col-sm-6\">\n                <a target='_blank' class=\"card-link\" href=\"{{map}}\">Zobrazit mapu</a>\n            </div>                               \n        </div>   \n     </div>\n</div>\n";
         return Mustache.to_html(tmpl, viewModel);
     };
-    OpeningHoursService.prototype.getHtmlForOpenFacilities = function (date) {
+    OpeningHoursService.prototype.getHtmlForOpenFacilities = function (openFacilities) {
         var _this = this;
-        var openFacilities = this.getOpenFacilities(date);
         return openFacilities.map(function (openFacility) {
             var closingTag = "";
             if (openFacility.closesSoon) {
@@ -254,8 +250,11 @@ var OpeningHoursService = /** @class */ (function () {
         if (!openingTimes)
             this.openingTimes = this.defaultOpeningTimes;
         var date = new Date();
-        var result = this.getHtmlForOpenFacilities(date);
-        result += this.getHtmlForFacilityThatOpenSoon(date);
+        var openFacilities = this.getOpenFacilities(date);
+        var result = this.getHtmlForOpenFacilities(openFacilities);
+        var facilityThatOpensSoon = this.getFacilityThatOpensSoon(date);
+        if (openFacilities.length == 0 || DateUtils.addHoursToDate(facilityThatOpensSoon.nextOpenTime, -3) > date)
+            result += this.getHtmlForFacilityThatOpenSoon(facilityThatOpensSoon);
         return result;
     };
     return OpeningHoursService;
