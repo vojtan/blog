@@ -244,7 +244,7 @@ var OpeningHoursService = /** @class */ (function () {
             };
             var tmpl = "<div class='card open'>\n                            <div class='card-body'>\n                                <h5 class='card-title'>\n                                    {{name}} otev\u0159en{{closingTag}}\n                                </h5>\n                                <div  class='card-text'> Otev\u00EDrac\u00ED doba {{openingHours}}\n                                </div>\n                                <div class=\"row card-info\">\n                                    <div class=\"col-sm-6\">\n                                        <a target='_blank'  class=\"card-link\" href=\"{{url}}\">V\u00EDce informac\u00ED</a>\n                                    </div>\n                                    <div class=\"col-sm-6\">\n                                        <a target='_blank' class=\"card-link\" href=\"{{map}}\">Zobrazit mapu</a>\n                                    </div>                               \n                                </div>   \n                             </div>\n                        </div>\n                        ";
             return Mustache.to_html(tmpl, viewModel);
-        }).join();
+        }).join("");
     };
     OpeningHoursService.prototype.renderHtml = function (openingTimes) {
         if (!openingTimes)
