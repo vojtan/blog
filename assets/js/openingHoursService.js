@@ -37,33 +37,36 @@ var DateUtils = /** @class */ (function () {
         return copiedDate;
     };
     DateUtils.BankHolidays = [
-        new Date(2019, 0, 1),
-        new Date(2019, 3, 10),
-        new Date(2019, 3, 13),
-        new Date(2019, 4, 1),
-        new Date(2019, 4, 8),
-        new Date(2019, 6, 5),
-        new Date(2019, 6, 6),
-        new Date(2019, 8, 28),
-        new Date(2019, 9, 28),
-        new Date(2019, 10, 17),
-        new Date(2019, 11, 24),
-        new Date(2019, 11, 25),
-        new Date(2019, 11, 26),
-        new Date(2020, 0, 1),
-        new Date(2020, 3, 10),
-        new Date(2020, 3, 13),
-        new Date(2020, 4, 1),
-        new Date(2020, 4, 8),
-        new Date(2020, 6, 5),
-        new Date(2020, 6, 6),
-        new Date(2020, 8, 28),
-        new Date(2020, 9, 28),
-        new Date(2020, 10, 17),
-        new Date(2020, 11, 24),
-        new Date(2020, 11, 25),
-        new Date(2020, 11, 26),
-    ];
+    // 2025
+    new Date(2025, 0, 1),   // Jan 1
+    new Date(2025, 3, 18),  // Good Friday
+    new Date(2025, 3, 21),  // Easter Monday
+    new Date(2025, 4, 1),   // May 1
+    new Date(2025, 4, 8),   // May 8
+    new Date(2025, 6, 5),   // July 5
+    new Date(2025, 6, 6),   // July 6
+    new Date(2025, 8, 28),  // Sep 28
+    new Date(2025, 9, 28),  // Oct 28
+    new Date(2025, 10, 17), // Nov 17
+    new Date(2025, 11, 24), // Dec 24
+    new Date(2025, 11, 25), // Dec 25
+    new Date(2025, 11, 26), // Dec 26
+
+    // 2026
+    new Date(2026, 0, 1),   // Jan 1
+    new Date(2026, 3, 3),   // Good Friday
+    new Date(2026, 3, 6),   // Easter Monday
+    new Date(2026, 4, 1),   // May 1
+    new Date(2026, 4, 8),   // May 8
+    new Date(2026, 6, 5),   // July 5
+    new Date(2026, 6, 6),   // July 6
+    new Date(2026, 8, 28),  // Sep 28
+    new Date(2026, 9, 28),  // Oct 28
+    new Date(2026, 10, 17), // Nov 17
+    new Date(2026, 11, 24), // Dec 24
+    new Date(2026, 11, 25), // Dec 25
+    new Date(2026, 11, 26), // Dec 26
+];
     return DateUtils;
 }());
 var TimeInformation = /** @class */ (function () {
